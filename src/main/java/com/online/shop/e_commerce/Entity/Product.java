@@ -1,30 +1,62 @@
 package com.online.shop.e_commerce.Entity;
 
 import jakarta.persistence.*;
-import jdk.jfr.Name;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 @Entity
+@Table(name = "products")
 public class Product {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
+    @Column(nullable = false)
     private String name;
+
+    @Column(columnDefinition = "TEXT")
     private String description;
+
+    @Column(nullable = false)
     private Double price;
+
+    @Column(nullable = false)
     private Integer quantity;
+
+    @Column(unique = true)
+    private String sku;
+
+    @Column(name = "category")
+    private String category;
+
+    @Column(name = "image_url")
+    private String imageUrl;
+
+    @Column(name = "is_active")
+    private Boolean isActive = true;
+
     @Column(name = "created_at")
     @CreationTimestamp
     private LocalDateTime createdAt;
+
     @Column(name = "updated_at")
     @UpdateTimestamp
     private LocalDateTime updatedAt;
 
+    public Product() {
+    }
+
+    public Product(String name, String description, Double price, Integer quantity) {
+        this.name = name;
+        this.description = description;
+        this.price = price;
+        this.quantity = quantity;
+    }
+
+    // Getters and Setters
     public Long getId() {
         return id;
     }
@@ -65,6 +97,38 @@ public class Product {
         this.quantity = quantity;
     }
 
+    public String getSku() {
+        return sku;
+    }
+
+    public void setSku(String sku) {
+        this.sku = sku;
+    }
+
+    public String getCategory() {
+        return category;
+    }
+
+    public void setCategory(String category) {
+        this.category = category;
+    }
+
+    public String getImageUrl() {
+        return imageUrl;
+    }
+
+    public void setImageUrl(String imageUrl) {
+        this.imageUrl = imageUrl;
+    }
+
+    public Boolean getIsActive() {
+        return isActive;
+    }
+
+    public void setIsActive(Boolean isActive) {
+        this.isActive = isActive;
+    }
+
     public LocalDateTime getCreatedAt() {
         return createdAt;
     }
@@ -79,5 +143,14 @@ public class Product {
 
     public void setUpdatedAt(LocalDateTime updatedAt) {
         this.updatedAt = updatedAt;
+    }
+
+    // Helper methods
+    public boolean isInStock() {
+        return quantity > 0;
+    }
+
+    public boolean hasStock(int requestedQuantity) {
+        return quantity >= requestedQuantity;
     }
 }
