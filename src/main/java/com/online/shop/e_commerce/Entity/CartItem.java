@@ -90,7 +90,6 @@ public class CartItem {
         this.updatedAt = updatedAt;
     }
 
-    // Helper methods
     public double getSubtotal() {
         return product.getPrice() * quantity;
     }

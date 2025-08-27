@@ -54,7 +54,6 @@ public class UserController {
         UserDto response = userService.convertToDto(updatedUser);
         return ResponseEntity.ok(response);
     }
-
     @PutMapping("/{userId}/password")
     public ResponseEntity<Void> updatePassword(
             @PathVariable Long userId,
