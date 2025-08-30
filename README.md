@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # E-Commerce Spring Boot Application
 
 A comprehensive e-commerce platform built with Spring Boot, featuring user management, product catalog, shopping cart, order processing, and secure authentication.
@@ -243,3 +244,7 @@ This project is licensed under the MIT License.
 ## Support
 
 For support and questions, please contact the development team or create an issue in the repository.
+=======
+# online_shop_be
+online_shop_fe
+>>>>>>> 4cfe013cd493521a5cca699cc016c2a82ff3cb0e
